@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Header from "../common/Header";
 import Card from "./Card";
 import { MenuItemProps } from "@/types/menuItems";
 

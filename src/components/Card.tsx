@@ -1,4 +1,6 @@
 "use client";
+import { useAppDispatch } from "@/store/hooks";
+import { setProductDetail } from "@/store/slices/menuSlice";
 import { Burger } from "@/types/menuItems";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -10,10 +12,16 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = ({ itemData }) => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const navigateToProductDetailHandler = () => {
+    dispatch(setProductDetail(itemData))
+    router.push(`/product-detail/${itemData?.id}`)
+  }
   return (
     <div
       className="sm:max-w-full lg:max-w-sm bg-slate-950 h-[33rem] border cursor-pointer rounded-lg flex flex-col gap-2 items-start justify-between"
-      onClick={() => router.push(`/product-detail/${itemData?.id}`)}
+      onClick={navigateToProductDetailHandler}
     >
       <div className="relative w-full h-full max-h-80">
         <Image

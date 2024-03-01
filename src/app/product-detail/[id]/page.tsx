@@ -1,11 +1,76 @@
+"use client";
+import { useAppSelector } from "@/store/hooks";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { Alert } from "flowbite-react";
+
 export default function Page({ params }: { params: { id: string } }) {
+  const productDetailData = useAppSelector(
+    (store) => store.menu.productDetailData
+  );
+
+  const router = useRouter();
+
+  const addToCartHandler = () => {
+
+  }
+  
   return (
-    <section className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          My Post: {params.id}
-        </p>
-      </div>
-    </section>
+    <>
+      {/* <Alert color="success" onDismiss={() => alert("Alert dismissed!")}>
+        <span className="font-medium">
+        “Added {productDetailData?.name} to cart“
+        </span>
+      </Alert> */}
+      <section className="flex flex-col min-h-screen items-center justify-between">
+        <div className="bg-zinc-800 w-full h-full rounded-2xl p-8 flex flex-col gap-4 max-w-7xl justify-center">
+          <div
+            className="flex gap-2 items-center cursor-pointer"
+            onClick={() => router.back()}
+          >
+            <Image
+              src={"src/public/arrow.svg"}
+              width={20}
+              height={20}
+              alt="arrow-left"
+            />
+            <span>Go Back</span>
+          </div>
+          <div className="h-[60rem] w-full flex flex-col gap-2 items-center justify-between">
+            <div className="max-w-4xl relative w-full h-full">
+              <Image
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="100%"
+                className="rounded-xl"
+                src={productDetailData?.image}
+                alt={"productDetailData"}
+              />
+            </div>
+            <div className="px-4 py-8 flex flex-col gap-4">
+              <h5 className="mb-8 text-5xl text-center font-bold tracking-tight">
+                {productDetailData?.name}
+              </h5>
+              <p className="text-gray-300 font-bold">
+                ${productDetailData?.price}
+              </p>
+              <p className="text-gray-300">{productDetailData?.description}</p>
+              <p className="text-gray-300">
+                Nutrition: {productDetailData?.calorie} calories
+              </p>
+            </div>
+            <div className="mt-8">
+              <button
+                type="button"
+                className="text-white bg-gray-600 focus:outline-none  font-medium rounded-full text-3xl px-10 py-2.5"
+                onClick={addToCartHandler}
+              >
+                Add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
