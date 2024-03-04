@@ -3,7 +3,7 @@
 1. Set up env
 
 
-    .env file to root directory and add below code
+    Add .env file to root directory and add below code
     ```sh
     BASE_URL=https://burgerhub00.github.io
     ```
