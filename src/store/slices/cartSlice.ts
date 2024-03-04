@@ -10,12 +10,12 @@ type cartItem = {
 
 type cartEntity = {
   cartItems: cartItem[];
-  totalQuantity: number
+  totalQuantity: number;
 };
 
 const initialState: cartEntity = {
   cartItems: [],
-  totalQuantity: 0
+  totalQuantity: 0,
 };
 
 const cartSlice = createSlice({
@@ -30,17 +30,22 @@ const cartSlice = createSlice({
       } else {
         state.cartItems.push({ ...action.payload, quantity: 1 });
       }
+      state.totalQuantity += 1;
     },
-    removeItemFromCart(state,action){
+    removeItemFromCart(state, action) {
       const productId = action.payload;
-      const productIndex = state.cartItems.findIndex(item => item.id === productId);
-      if (productIndex !== -1) {
-        state.cartItems.splice(productIndex, 1);
+      const existingProductIndex = state.cartItems.findIndex(
+        (item) => item.id === productId
+      );
+
+      if (Number(existingProductIndex) !== -1) {
+        const removedItem = state.cartItems.splice(existingProductIndex, 1)[0];
+        state.totalQuantity -= removedItem.quantity;
       }
-    }
+    },
   },
 });
 
-export const { addItemToCart,removeItemFromCart } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
