@@ -16,12 +16,12 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
   const router = useRouter();
 
   const addToCartHandler = () => {
-    toast.success(`“Added ${productDetailData?.name} to cart“`);
+    toast.success(`Added ${productDetailData?.name} to cart`);
     dispatch(addItemToCart({ id, name, image, price }));
   };
 
   return (
-    <section className="flex flex-col min-h-screen items-center justify-between">
+    <section className="flex flex-col p-8 min-h-screen items-center justify-between">
       <div className="bg-zinc-800 w-full h-full rounded-2xl p-8 flex flex-col gap-4 max-w-7xl justify-center">
         <div
           className="flex gap-2 items-center cursor-pointer"

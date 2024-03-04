@@ -7,7 +7,7 @@ export default async function Home() {
 }
 
 async function getData() {
-  const res = await fetch("https://burgerhub00.github.io/data/products.json");
+  const res = await fetch(`${process.env.BASE_URL}/data/products.json`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

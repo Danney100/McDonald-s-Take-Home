@@ -12,7 +12,7 @@ export default function Page() {
   };
 
   return (
-    <section className="flex flex-col min-h-screen items-center justify-between">
+    <section className="flex flex-col p-8 min-h-screen items-center justify-between">
       <div className="bg-zinc-800 w-full h-full rounded-2xl p-8 flex flex-col gap-4 max-w-7xl justify-center">
         <div className=" w-full flex flex-col gap-2 items-center justify-between">
           <div className="px-4 py-8 flex flex-col gap-4">
@@ -26,7 +26,7 @@ export default function Page() {
                 return (
                   <div
                     key={i}
-                    className="flex justify-between px-16 py-4 items-center text-xl"
+                    className="flex border-b border-gray-500 justify-between px-16 py-4 items-center text-xl"
                   >
                     <div className="flex items-center gap-8">
                       <div className="h-28 relative w-28">
