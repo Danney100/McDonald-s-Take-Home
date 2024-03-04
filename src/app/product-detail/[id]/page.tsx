@@ -2,7 +2,7 @@
 import { useAppSelector } from "@/store/hooks";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Alert } from "flowbite-react";
+import { toast } from "react-toastify";
 
 export default function Page({ params }: { params: { id: string } }) {
   const productDetailData = useAppSelector(
@@ -12,16 +12,10 @@ export default function Page({ params }: { params: { id: string } }) {
   const router = useRouter();
 
   const addToCartHandler = () => {
+    toast.success(`“Added ${productDetailData?.name} to cart“`)
+  };
 
-  }
-  
   return (
-    <>
-      {/* <Alert color="success" onDismiss={() => alert("Alert dismissed!")}>
-        <span className="font-medium">
-        “Added {productDetailData?.name} to cart“
-        </span>
-      </Alert> */}
       <section className="flex flex-col min-h-screen items-center justify-between">
         <div className="bg-zinc-800 w-full h-full rounded-2xl p-8 flex flex-col gap-4 max-w-7xl justify-center">
           <div
@@ -29,9 +23,9 @@ export default function Page({ params }: { params: { id: string } }) {
             onClick={() => router.back()}
           >
             <Image
-              src={"src/public/arrow.svg"}
-              width={20}
-              height={20}
+              src={"/arrow.svg"}
+              width={30}
+              height={30}
               alt="arrow-left"
             />
             <span>Go Back</span>
@@ -71,6 +65,5 @@ export default function Page({ params }: { params: { id: string } }) {
           </div>
         </div>
       </section>
-    </>
   );
 }
