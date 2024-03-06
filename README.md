@@ -2,14 +2,18 @@
 
 1. Set up env
 
+   Add .env file to root directory and add below code
 
-    Add .env file to root directory and add below code
-    ```sh
-    BASE_URL=https://burgerhub00.github.io
-    ```
+   ```sh
+   BASE_URL=https://burgerhub00.github.io
+   ```
 
 2. Start the application
 
-    ```sh
-    npm i && npm run dev
-    ```
+   ```sh
+   npm i
+   ```
+
+   ```sh
+   npm run dev
+   ```
